@@ -1,6 +1,5 @@
 from psycopg2 import Error, connect
 from config import user, password, host, port, database
-from queries import create_tables_commands
 
 
 class Conn:

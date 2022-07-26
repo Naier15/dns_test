@@ -1,23 +1,3 @@
-insert_cities_command = f'INSERT INTO cities (ref, title) VALUES (%s, %s);'
-
-insert_products_command = f'INSERT INTO products (ref, title) VALUES (%s, %s);'
-
-insert_branches_command = f'INSERT INTO branches (ref, title, ref_city, short_name, region) \
-        VALUES (%s, %s, %s, %s, %s);'
-
-insert_sales_command = f'INSERT INTO sales (datetime, ref_branch, ref_product, quantity, price) \
-        VALUES (%s, %s, %s, %s, %s);'
-
-insert_products_with_category_command = 'INSERT INTO products_with_category (title, category) VALUES (%s, %s);'
-
-
-create_products_with_category_table = """CREATE TABLE IF NOT EXISTS products_with_category (
-                                                id SERIAL PRIMARY KEY,
-                                                title TEXT,
-                                                category VARCHAR(50)
-                                        );"""
-
-                                        
 create_tables_commands = [
     (
         """CREATE TABLE IF NOT EXISTS cities (
@@ -113,7 +93,4 @@ top_10_most_selling_cities = """SELECT cities.title, COUNT(*) FROM sales
 	                                ORDER BY count DESC
 	                                LIMIT 10;"""
 
-sales_of_products = """SELECT title, count FROM 
-	                        (SELECT ref_product, COUNT(*) FROM sales
-	                        GROUP BY ref_product) AS sales_of_products
-	 	                        LEFT JOIN products ON sales_of_products.ref_product=products.ref;"""
+sales_of_products = """SELECT ref_product, COUNT(*) FROM sales GROUP BY ref_product;"""

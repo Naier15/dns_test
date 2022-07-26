@@ -7,12 +7,33 @@ password = os.environ['psql_passwd']
 host = '127.0.0.1'
 port = '5432'
 
-__path_to_tables = './test_data/'
-__ext_tables = '.csv'
 
+rename_branches = {
+    'Unnamed: 0': 'id', 
+    'Ссылка': 'ref', 
+    'Наименование': 'title',
+    'Город': 'ref_city',
+    'КраткоеНаименование': 'short_name',
+    'Регион': 'region'
+}
 
-# Path to csv tables
-branches = f'{__path_to_tables}t_branches{__ext_tables}'
-cities = f'{__path_to_tables}t_cities{__ext_tables}'
-products = f'{__path_to_tables}t_products{__ext_tables}'
-sales = f'{__path_to_tables}t_sales{__ext_tables}'
+rename_cities = {
+    'Unnamed: 0': 'id', 
+    'Ссылка': 'ref', 
+    'Наименование': 'title'
+}
+
+rename_products = {
+    'Unnamed: 0': 'id', 
+    'Ссылка': 'ref', 
+    'Наименование': 'title'
+}
+
+rename_sales = {
+    'Unnamed: 0': 'id', 
+    'Период': 'datetime', 
+    'Филиал': 'ref_branch',
+    'Номенклатура': 'ref_product',
+    'Количество': 'quantity',
+    'Продажа': 'price'
+}
